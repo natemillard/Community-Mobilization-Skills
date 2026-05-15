@@ -1,7 +1,9 @@
 backend:
-  name: git-gateway
-  repo: natemillard/cm-skills-hub   # ← update this
+  name: github
+  repo: natemillard/cm-skills-hub
   branch: main
+  base_url: https://communitymobilization.netlify.app
+  auth_endpoint: api/auth
 
 # When working locally, use the local backend instead:
 # backend:
