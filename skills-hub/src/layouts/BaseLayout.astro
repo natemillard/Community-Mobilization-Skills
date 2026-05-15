@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'A learning resource for community mobilization practitioners.' } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/overview', label: 'Overview' },
+  { href: '/skills', label: 'Skills' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/mobilize', label: 'MOBILIZE' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title} — Community Mobilization Skills Hub</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Netlify Identity — required for Decap CMS login -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="nav-dot" aria-hidden="true"></span>
+        CM Skills Hub
+      </a>
+      <ul class="nav-links">
+        {navItems.map(item => (
+          <li>
+            <a
+              href={item.href}
+              class={currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href)) ? 'active' : ''}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <slot />
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-note">Community Mobilization Skills Hub · A learning resource for practitioners</p>
+      <ul class="footer-links">
+        <li><a href="/about">About</a></li>
+        <li><a href="/skills">Skills</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/mobilize">MOBILIZE</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+</body>
+<!-- Redirect to admin after CMS login -->
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</html>

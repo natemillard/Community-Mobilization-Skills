@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="MOBILIZE Game" description="MOBILIZE — a community resilience simulation game. Coming soon.">
+
+  <section class="hero">
+    <div class="container">
+      <span class="coming-soon-badge">Coming Soon</span>
+      <h1>MOBILIZE</h1>
+      <p class="lead">
+        A card-based community resilience simulation. Players navigate the chapter journey — mapping assets, confronting challenges, and building the relationships that make lasting change possible.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+
+      <div style="background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-lg); padding: 3rem; margin-bottom: 2rem;">
+        <h2 style="margin-bottom: 1.5rem;">What is MOBILIZE?</h2>
+        <p style="color: var(--ink-2); margin-bottom: 1rem;">
+          MOBILIZE is a card-based community resilience simulation game designed for Executive Directors, program staff, and community partners. Players work together to build community resilience — navigating real-world challenges, mapping assets, and making strategic decisions as a team.
+        </p>
+        <p style="color: var(--ink-2);">
+          The game is built on three 54-card decks: a Resilience deck that maps community strengths, a Challenge deck that surfaces what communities face, and an Asset deck that identifies the people, organizations, spaces, and networks that make resilience possible.
+        </p>
+      </div>
+
+      <div class="grid-3" style="margin-bottom: 2rem;">
+        {[
+          { title: 'Resilience Deck', desc: '26 cards mapping community strengths across Basic Needs, Health, Economic, Education, Environment, and Social Cohesion — plus blank cards for your community\'s own strengths.', color: '#557A35' },
+          { title: 'Challenge Deck', desc: '28 cards covering Acute Events, Chronic Challenges, System Gaps, Power & Equity, Internal Challenges, and Disruptions — plus blank cards for your community\'s real challenges.', color: '#BD2F2E' },
+          { title: 'Asset Deck', desc: '54 cards covering People, Organizations, Government, Programs, Spaces, and Networks — each showing what the asset provides when Latent and when Activated.', color: '#CA9B33' },
+        ].map(deck => (
+          <div class="card">
+            <span class="card-pip" style={`background: ${deck.color};`}></span>
+            <h3 style="font-size: 1rem;">{deck.title}</h3>
+            <p style="font-size: 0.875rem;">{deck.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <div style="background: var(--surf-2); border-radius: var(--r-lg); padding: 2rem; border-left: 4px solid var(--economic);">
+        <h3 style="margin-bottom: 1rem;">How the game is played</h3>
+        <p style="color: var(--ink-2); margin-bottom: 0.75rem;">
+          MOBILIZE follows nine phases that mirror the chapter journey — from earning community trust and mapping assets through building layered plans and responding to disruptions. Players earn Resilience cards by doing the work right. Challenge cards surface the real conditions communities face. Asset cards reveal what each asset provides when it is truly activated.
+        </p>
+        <p style="color: var(--ink-2); margin: 0;">
+          The game is designed for use in divisional meetings, training days, and any setting where a team needs to build shared understanding of community mobilization in practice.
+        </p>
+      </div>
+
+      <div style="margin-top: 3rem; text-align: center; padding: 2rem; border: 1.5px dashed var(--rule); border-radius: var(--r-lg);">
+        <p style="color: var(--ink-3); font-size: 1rem; margin: 0; max-width: none;">
+          The MOBILIZE game page is in development. Check back for facilitator guides, card downloads, and play instructions.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="text-align: center;">
+      <h2 style="margin-bottom: 1rem;">While you wait</h2>
+      <p style="color: var(--ink-2); margin: 0 auto 2rem; max-width: 44ch;">
+        Explore the 10 core skills — the same skills that MOBILIZE is designed to practice.
+      </p>
+      <a href="/skills" class="btn btn-primary">Browse the skills →</a>
+    </div>
+  </section>
+
+</BaseLayout>

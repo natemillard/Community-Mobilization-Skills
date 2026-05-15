@@ -1,0 +1,159 @@
+backend:
+  name: github
+  repo: YOUR-GITHUB-USERNAME/YOUR-REPO-NAME   # ← update this
+  branch: main
+
+# When working locally, use the local backend instead:
+# backend:
+#   name: git-gateway
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+
+  # ── SKILLS ─────────────────────────────────────────────────────────
+  - name: "skills"
+    label: "Skills"
+    label_singular: "Skill"
+    folder: "src/content/skills"
+    create: false          # skills are fixed — edit only, no creating new ones
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{slug}}"
+    identifier_field: "title"
+    summary: "{{skillNumber}} — {{title}}"
+    sortable_fields: ["order", "title"]
+    fields:
+
+      - label: "Skill Title"
+        name: "title"
+        widget: "string"
+        hint: "The full name of the skill — e.g. Trust-Building Conversations"
+
+      - label: "Skill Number"
+        name: "skillNumber"
+        widget: "string"
+        hint: "e.g. S1, S2 ... S10"
+
+      - label: "Order"
+        name: "order"
+        widget: "number"
+        min: 1
+        max: 10
+        hint: "Display order (1–10)"
+
+      - label: "Chapter Journey Phase"
+        name: "phase"
+        widget: "string"
+        hint: "e.g. Preconditions, Internal Asset Mapping, Planning & Execution"
+
+      - label: "Combines"
+        name: "combines"
+        widget: "string"
+        hint: "What original skill names this combines — e.g. One-to-One Relational Conversations + Lived Experience Listening"
+
+      - label: "Accent Color"
+        name: "accentColor"
+        widget: "string"
+        hint: "Hex color from the unified palette — e.g. #225A7B"
+
+      - label: "Draft (hide from site)"
+        name: "draft"
+        widget: "boolean"
+        default: false
+
+      - label: "Recommended Prior Skills"
+        name: "priorSkills"
+        widget: "list"
+        allow_add: true
+        hint: "Skills to complete before this one — e.g. Self-Discovery (S1)"
+        field:
+          label: "Skill"
+          name: "skill"
+          widget: "string"
+
+      - label: "Key Mindsets"
+        name: "keyMindsets"
+        widget: "list"
+        allow_add: true
+        hint: "2-3 mindsets that must be present for this skill to work"
+        field:
+          label: "Mindset"
+          name: "mindset"
+          widget: "string"
+
+      - label: "Key Frameworks"
+        name: "keyFrameworks"
+        widget: "list"
+        allow_add: true
+        hint: "2-3 frameworks that ground this skill"
+        field:
+          label: "Framework"
+          name: "framework"
+          widget: "string"
+
+      - label: "Previous Skill (navigation)"
+        name: "prevSkill"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Page path", name: "href", widget: "string", hint: "e.g. /skills/self-discovery" }
+          - { label: "Skill title", name: "title", widget: "string" }
+
+      - label: "Next Skill (navigation)"
+        name: "nextSkill"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - { label: "Page path", name: "href", widget: "string", hint: "e.g. /skills/trust-building" }
+          - { label: "Skill title", name: "title", widget: "string" }
+
+      - label: "Page Content"
+        name: "body"
+        widget: "markdown"
+        hint: >
+          Write the full skill content here using Markdown.
+          Use ## headings for sections: Definition, Examples in Red Cross Work,
+          This Skill in Everyday Life, Guiding Questions, Sub-Competencies, Proficiency Levels.
+          Use a Markdown table for the Proficiency Levels section.
+
+  # ── SITE PAGES ──────────────────────────────────────────────────────
+  - name: "site-pages"
+    label: "Site Pages"
+    files:
+
+      - label: "Home Page"
+        name: "home"
+        file: "src/content/pages/home.md"
+        fields:
+          - { label: "Hero Headline", name: "heroHeadline", widget: "string", default: "Building the skills that move communities." }
+          - { label: "Hero Subtext", name: "heroSubtext", widget: "text" }
+          - { label: "About Section Headline", name: "aboutHeadline", widget: "string" }
+          - { label: "About Section Body", name: "aboutBody", widget: "text" }
+
+      - label: "About Page"
+        name: "about"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "Resources Page"
+        name: "resources"
+        file: "src/content/pages/resources.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "string" }
+          - { label: "Body", name: "body", widget: "markdown" }
+
+      - label: "MOBILIZE Page"
+        name: "mobilize"
+        file: "src/content/pages/mobilize.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Coming Soon", name: "comingSoon", widget: "boolean", default: true }
+          - { label: "Body", name: "body", widget: "markdown" }

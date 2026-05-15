@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const resources = [
+  {
+    category: 'Foundational Reading',
+    color: '#557A35',
+    items: [
+      { title: 'Building Communities from the Inside Out', author: 'Kretzmann & McKnight', note: 'The foundational text on Asset-Based Community Development — the philosophical backbone of community mobilization.' },
+      { title: 'The Art of Facilitation', author: 'Dale Hunter', note: 'A practical guide to holding space for genuine group work. Essential for anyone facilitating community processes.' },
+      { title: "Facilitator's Guide to Participatory Decision-Making", author: 'Sam Kaner', note: 'The most practical guide to designing group processes that produce genuine alignment — not just apparent agreement.' },
+    ]
+  },
+  {
+    category: 'Relational Practice & Trust',
+    color: '#225A7B',
+    items: [
+      { title: 'Emergent Strategy', author: 'adrienne maree brown', note: 'On building movements and organizations that are adaptive, fractal, and grounded in trust.' },
+      { title: "The Mentor's Guide", author: 'Lois Zachary', note: 'A practical framework for mentoring relationships that build genuine capability over time.' },
+      { title: 'Coaching for Performance', author: 'John Whitmore', note: 'The GROW model and the practice of coaching without giving answers — useful for any leadership role.' },
+    ]
+  },
+  {
+    category: 'Power, Equity & Systems',
+    color: '#BD2F2E',
+    items: [
+      { title: 'The New Jim Crow', author: 'Michelle Alexander', note: 'Essential context for understanding how systems produce the inequities that community mobilization must reckon with.' },
+      { title: 'Thinking in Systems', author: 'Donella Meadows', note: 'The most accessible introduction to systems thinking — foundational for Building Across Levels.' },
+      { title: 'Collective Impact Forum', author: 'FSG', note: 'Online resource library for cross-sector collaboration — includes case studies, tools, and frameworks.' },
+    ]
+  },
+  {
+    category: 'Facilitation & Learning',
+    color: '#004AAD',
+    items: [
+      { title: 'The Reflective Practitioner', author: 'Donald Schön', note: 'On learning through doing — the theoretical foundation for the Data-Informed Learning skill.' },
+      { title: 'Facilitating with Ease!', author: 'Ingrid Bens', note: 'Practical tools and techniques for every kind of group process — from agenda design to difficult moments.' },
+      { title: 'Immunity to Change', author: 'Kegan & Lahey', note: 'A framework for understanding why intelligent, motivated people fail to change — relevant for self-discovery and coaching.' },
+    ]
+  },
+];
+---
+
+<BaseLayout title="Resources" description="Learning resources for community mobilization practitioners.">
+
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Resources</span>
+      <h1>Further learning.</h1>
+      <p class="lead">
+        Books, frameworks, and resources that deepen the skills and thinking behind community mobilization practice. These are not a reading list — they are tools for the work.
+      </p>
+    </div>
+  </section>
+
+  {resources.map(section => (
+    <section class="section">
+      <div class="container">
+        <span class="section-label" style={`color: ${section.color};`}>{section.category}</span>
+        <div class="grid-3">
+          {section.items.map(item => (
+            <div class="card">
+              <span class="card-pip" style={`background: ${section.color};`}></span>
+              <h3 style="font-size: 1.0625rem;">{item.title}</h3>
+              <p style="font-size: 0.8rem; font-weight: 600; color: var(--ink-3); margin-bottom: 0.75rem; font-style: italic;">{item.author}</p>
+              <p style="font-size: 0.9375rem;">{item.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section">
+    <div class="container" style="max-width: 720px;">
+      <span class="section-label">Frameworks referenced in this hub</span>
+      <h2>Core frameworks</h2>
+      <div style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1.5rem;">
+        {[
+          { name: 'Asset-Based Community Development (ABCD)', desc: 'Start with what a community has — people, associations, institutions, places — not what it lacks. Developed by Kretzmann and McKnight at Northwestern University.' },
+          { name: 'Social Ecological Model', desc: 'Five levels of influence: Individual · Interpersonal · Organizational · Community · Systems. Used in Building Across Levels and throughout the hub.' },
+          { name: 'Collective Impact', desc: 'Shared agenda · Common measures · Mutually reinforcing activities · Continuous communication · Backbone support. From FSG and the Stanford Social Innovation Review.' },
+          { name: 'Relational Organizing', desc: 'Change happens through relationships. Trust precedes strategy. Rooted in labor organizing traditions and expanded by community development practice.' },
+          { name: "Bloom's Taxonomy", desc: 'A framework for categorizing learning objectives from Remember and Understand through Apply, Analyze, Evaluate, and Create. The proficiency levels in this hub are aligned to Bloom\'s.' },
+          { name: 'Facilitative Leadership', desc: 'Leadership through process design and shared decision-making rather than positional authority. The orientation behind Decision-Making Without Authority.' },
+        ].map(f => (
+          <div style="padding: 1.5rem; background: var(--white); border: 1px solid var(--rule); border-radius: var(--r-md);">
+            <h4 style="margin-bottom: 0.5rem;">{f.name}</h4>
+            <p style="font-size: 0.9375rem; color: var(--ink-2); margin: 0; max-width: none;">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

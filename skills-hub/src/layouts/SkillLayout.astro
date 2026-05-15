@@ -1,0 +1,98 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  skillNumber: string;
+  phase: string;
+  combines: string;
+  accentColor: string;
+  priorSkills: string[];
+  keyMindsets: string[];
+  keyFrameworks: string[];
+  prevSkill?: { href: string; title: string };
+  nextSkill?: { href: string; title: string };
+}
+
+const {
+  title, skillNumber, phase, combines, accentColor,
+  priorSkills, keyMindsets, keyFrameworks,
+  prevSkill, nextSkill,
+} = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div class="skill-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span aria-hidden="true">›</span>
+        <a href="/skills">Skills</a>
+        <span aria-hidden="true">›</span>
+        <span>{title}</span>
+      </nav>
+
+      <span class="skill-tag">{skillNumber}</span>
+      <h1>{title}</h1>
+      <p style="color: var(--ink-3); font-size: .875rem; margin-top: .5rem;">
+        Chapter Journey Phase: <strong style="color: var(--ink-2);">{phase}</strong>
+      </p>
+      <p class="skill-combines">{combines}</p>
+      <div class="skill-accent" style={`background: ${accentColor};`}></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="skill-layout">
+
+      <article class="skill-content">
+        <slot />
+
+        <nav class="skill-nav" aria-label="Skill navigation">
+          {prevSkill ? (
+            <a href={prevSkill.href}>← {prevSkill.title}</a>
+          ) : <span />}
+          {nextSkill && (
+            <a href={nextSkill.href}>{nextSkill.title} →</a>
+          )}
+        </nav>
+      </article>
+
+      <aside class="skill-sidebar">
+        {priorSkills.length > 0 && (
+          <div class="sidebar-block">
+            <h4>Prior Skills</h4>
+            <ul class="sidebar-list">
+              {priorSkills.map(s => <li>{s}</li>)}
+            </ul>
+          </div>
+        )}
+
+        <div class="sidebar-block">
+          <h4>Key Mindsets</h4>
+          <ul class="sidebar-list">
+            {keyMindsets.map(m => <li>{m}</li>)}
+          </ul>
+        </div>
+
+        <div class="sidebar-block">
+          <h4>Key Frameworks</h4>
+          <ul class="sidebar-list">
+            {keyFrameworks.map(f => <li>{f}</li>)}
+          </ul>
+        </div>
+
+        <div class="sidebar-block" style={`border-top: 3px solid ${accentColor};`}>
+          <h4>Quick Links</h4>
+          <ul class="sidebar-list">
+            <li><a href="#definition" style="color: inherit; text-decoration: none;">Definition</a></li>
+            <li><a href="#rc-examples" style="color: inherit; text-decoration: none;">RC Examples</a></li>
+            <li><a href="#guiding-questions" style="color: inherit; text-decoration: none;">Guiding Questions</a></li>
+            <li><a href="#proficiency" style="color: inherit; text-decoration: none;">Proficiency Levels</a></li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</BaseLayout>
