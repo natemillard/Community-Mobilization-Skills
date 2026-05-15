@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: nate-millard/cm-skills-hub   # ← update this
+  repo: natemillard/cm-skills-hub   # ← update this
   branch: main
 
 # When working locally, use the local backend instead:
