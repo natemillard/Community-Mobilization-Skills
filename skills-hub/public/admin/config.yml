@@ -15,7 +15,7 @@ collections:
   - name: "skills"
     label: "Skills"
     label_singular: "Skill"
-    folder: "src/content/skills"
+    folder: "skills-hub/src/content/skills"
     create: false          # skills are fixed — edit only, no creating new ones
     extension: "md"
     format: "frontmatter"
