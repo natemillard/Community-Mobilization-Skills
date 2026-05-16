@@ -14,7 +14,10 @@ exports.handler = async (event) => {
 
   const response = await fetch('https://github.com/login/oauth/access_token', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    headers: { 
+      'Content-Type': 'application/json', 
+      'Accept': 'application/json' 
+    },
     body: JSON.stringify({
       client_id: GITHUB_CLIENT_ID,
       client_secret: GITHUB_CLIENT_SECRET,
@@ -23,15 +26,30 @@ exports.handler = async (event) => {
   });
 
   const data = await response.json();
+  const token = data.access_token;
 
   return {
     statusCode: 200,
     headers: { 'Content-Type': 'text/html' },
-    body: `<script>
+    body: `<!DOCTYPE html>
+<html>
+<body>
+<script>
+  (function() {
+    function receiveMessage() {
       window.opener.postMessage(
-        'authorization:github:success:${JSON.stringify({ token: data.access_token, provider: 'github' })}',
-        '*'
+        'authorization:github:success:' + JSON.stringify({
+          token: '${token}',
+          provider: 'github'
+        }),
+        window.location.origin
       );
-    </script>`,
+      window.close();
+    }
+    receiveMessage();
+  })();
+</script>
+</body>
+</html>`,
   };
 };
